@@ -24,33 +24,28 @@ def valida_cpf(cpf):
     for i in cpf: #transforma cada elemento no cpf em inteiros e coloca eles em uma lista(fat_cpf)
         i = int(i) 
         fat_cpf.append(i)
-    resultado = []
-    for j in range(0, 10):
+    while j < 11:
         soma += fat_cpf[j] * count #multiplica o numero do cpf pelo count 
-        print(j, count)
+        j += 1
         count -= 1 #decrementa 1 no count 
-        resultado.append(soma)
         if count <= 1:
-            if verificar:
-                print(resultado)
+            if verificar: #verifica se o primeiro digito é valido
                 digito1 = 11 - (soma % 11)
-                if digito1 < 2:
+                if digito1 < 2 or soma % 11 == 0:
                     digito1 = 0
                 count = 11
                 j = 0
                 soma = 0
                 verificar = False
-                resultado.clear()
-            else:
-                print(resultado)
+            else: #verifica se o segundo digito é valido
                 digito2 = 11 - (soma % 11)
-                print(digito2)
-                if digito2 < 2:
+                if digito2 < 2 or soma % 11 == 0:
                     digito2 = 0
-                break       
-    print(fat_cpf)
-    return fat_cpf
+                break 
+    if digito1 == fat_cpf[-2] and digito2 == fat_cpf[-1]:
+        return True
+    else:
+        return False
         
 cpf = str(input())
-valida_cpf(cpf)
-bem_vindo()
+print(valida_cpf(cpf))
