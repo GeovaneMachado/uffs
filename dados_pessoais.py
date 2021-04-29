@@ -1,9 +1,23 @@
 #cadastro de dados
-def pessoa():
+def ver_nome(lista,nome_usuario):
+    verificacao=bool
+    if nome_usuario in lista:
+        return True
+    else:
+        return False
+       
+
+def pessoa(lista):
     print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=Iniciando cadastro-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
     nome_usuario=str(input("digite seu nome completo: "))
+    ver=ver_nome(lista,nome_usuario)
+    while ver == True:
+        print("nome ja cadastrado")
+        nome_usuario=str(input("digite seu nome completo: "))
+        ver=ver_nome(lista,nome_usuario)
     return nome_usuario
     
+
 def cad_cpf():
     cpf=str("Digite seu cpf: ")
     ver_cpf=valida_cpf(cpf)
@@ -28,5 +42,8 @@ def cad_email():
     email=str(input("Digite seu indereço de email: "))
     return email
 
-pes=cad_email()
-print(pes)
+#lista=['maluko','judite']
+#while True:
+#    teste=pessoa(lista)
+#    lista.append(teste)
+#    print(lista)
