@@ -29,28 +29,31 @@ def valida_cpf(cpf):
     for i in cpf: #transforma cada elemento no cpf em inteiros e coloca eles em uma lista(fat_cpf)
         i = int(i) 
         fat_cpf.append(i)
-    while j < 11:
-        soma += fat_cpf[j] * count #multiplica o numero do cpf pelo count 
-        j += 1
-        count -= 1 #decrementa 1 no count 
-        if count <= 1:
-            if verificar: #verifica se o primeiro digito é valido
-                digito1 = 11 - (soma % 11)
-                if digito1 < 2 or soma % 11 == 0:
-                    digito1 = 0
-                count = 11
-                j = 0
-                soma = 0
-                verificar = False
-            else: #verifica se o segundo digito é valido
-                digito2 = 11 - (soma % 11)
-                if digito2 < 2 or soma % 11 == 0:
-                    digito2 = 0
-                break 
-    if digito1 == fat_cpf[-2] and digito2 == fat_cpf[-1]:
-        return True
-    else:
+    if len(fat_cpf) != 11:
         return False
+    else:
+        while j < 11:
+            soma += fat_cpf[j] * count #multiplica o numero do cpf pelo count 
+            j += 1
+            count -= 1 #decrementa 1 no count 
+            if count <= 1:
+                if verificar: #verifica se o primeiro digito é valido
+                    digito1 = 11 - (soma % 11)
+                    if digito1 < 2 or soma % 11 == 0:
+                        digito1 = 0
+                    count = 11
+                    j = 0
+                    soma = 0
+                    verificar = False
+                else: #verifica se o segundo digito é valido
+                    digito2 = 11 - (soma % 11)
+                    if digito2 < 2 or soma % 11 == 0:
+                        digito2 = 0
+                    break 
+        if digito1 == fat_cpf[-2] and digito2 == fat_cpf[-1]:
+            return True
+        else:
+            return False
         
 def cad_cpf():
     #essa função serve para cadastrar o cpf
