@@ -62,18 +62,20 @@ def cad_cpf():
         ver_cpf=valida_cpf(cpf)
     print("Ok")
     return cpf
-cad_cpf()
+#cad_cpf()
 
 def cad_senha():
     #Essa função serve para cadastrar a senha do usuario
-    senha=str(input("Digite sua nova senha: "))
-    conf_senha=(input("Confireme seu senha: "))
+    from getpass import getpass #Esconde a senha digitada
+    senha = getpass('Digite sua senha: ')
+    conf_senha=getpass('Confirme sua senha: ')
     while senha != conf_senha:
         print("As senhas divergem")
-        senha=str(input("Digite novamente sua nova senha: "))
-        conf_senha=(input("Confireme seu nova senha: "))
+        senha = getpass('Digite sua senha: ')
+        conf_senha=getpass('Confirme sua senha: ')
         print("senha cadastrada com sucesso")
     return senha
+cad_senha()
 
 def cad_email():
     #Essa função serve para cadastrar o email do usuario
