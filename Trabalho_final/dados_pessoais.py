@@ -97,3 +97,5 @@ def lista():
 #    teste=pessoa(lista)
 #    lista.append(teste)
 #    print(lista)
+lucas=lista()
+print(lucas)
