@@ -69,9 +69,10 @@ def cad_cpf():
 def cad_senha():
     #Essa função serve para cadastrar a senha do usuario
     from getpass import getpass #Esconde a senha digitada
+    print('Cadastre sua senha com 6 digitos!')
     senha = getpass('Digite sua senha: ')
     conf_senha=getpass('Confirme sua senha: ')
-    while senha != conf_senha:
+    while senha != conf_senha and len(senha) > 6:
         print("As senhas divergem")
         senha = getpass('Digite sua senha: ')
         conf_senha=getpass('Confirme sua senha: ')
