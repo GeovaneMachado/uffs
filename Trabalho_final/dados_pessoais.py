@@ -29,7 +29,7 @@ def valida_cpf(cpf):
     for i in cpf: #transforma cada elemento no cpf em inteiros e coloca eles em uma lista(fat_cpf)
         i = int(i) 
         fat_cpf.append(i)
-    if len(fat_cpf) != 11:
+    if len(fat_cpf) < 11:
         return False
     else:
         while j < 11:
@@ -44,7 +44,7 @@ def valida_cpf(cpf):
                     count = 11
                     j = 0
                     soma = 0
-                    verificar = False
+                    verificar = False #Apos verificar o primeiro digito a variavel fica False e não executa mais esse bloco
                 else: #verifica se o segundo digito é valido
                     digito2 = 11 - (soma % 11)
                     if digito2 < 2 or soma % 11 == 0:
@@ -63,9 +63,8 @@ def cad_cpf():
         print("CPF invalido")
         cpf=str(input("Por favor digite novamente: "))
         ver_cpf=valida_cpf(cpf)
-    print("Ok")
     return cpf
-#cad_cpf()
+
 
 def cad_senha():
     #Essa função serve para cadastrar a senha do usuario
@@ -78,12 +77,20 @@ def cad_senha():
         conf_senha=getpass('Confirme sua senha: ')
         print("senha cadastrada com sucesso")
     return senha
-cad_senha()
 
 def cad_email():
     #Essa função serve para cadastrar o email do usuario
     email=str(input("Digite seu indereço de email: "))
     return email
+
+def lista():
+    pessoa = pessoa()
+    cpf = cad_cpf()
+    email = cad_email()
+    senha = cad_senha()
+    cadastro = [pessoa, email, cpf, senha]
+    return cadastro
+
 
 #lista=['maluko','judite']
 #while True:
