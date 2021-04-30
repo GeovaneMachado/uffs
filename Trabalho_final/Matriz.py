@@ -46,7 +46,11 @@ def pessoa(lista):
 
 #programa principal
 boas_vindas=bem_vindo()
-fun_menu=menu()
-if fun_menu == 1:
-    cadastro=
+cad_clientes=[]
+while True:
+    fun_menu=menu()
+    if fun_menu == 1:
+        apender = pessoa(cad_clientes)
+        cad_clientes.append(apender)
+
 
