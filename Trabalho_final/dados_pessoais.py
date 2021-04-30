@@ -38,16 +38,18 @@ def valida_cpf(cpf):
             count -= 1 #decrementa 1 no count 
             if count <= 1:
                 if verificar: #verifica se o primeiro digito é valido
-                    digito1 = 11 - (soma % 11)
-                    if digito1 < 2 or soma % 11 == 0:
+                    resto = soma % 11
+                    digito1 = 11 - resto
+                    if resto < 2:
                         digito1 = 0
                     count = 11
                     j = 0
                     soma = 0
                     verificar = False #Apos verificar o primeiro digito a variavel fica False e não executa mais esse bloco
                 else: #verifica se o segundo digito é valido
-                    digito2 = 11 - (soma % 11)
-                    if digito2 < 2 or soma % 11 == 0:
+                    resto = soma % 11
+                    digito2 = 11 - resto
+                    if resto < 2:
                         digito2 = 0
                     break 
         if digito1 == fat_cpf[-2] and digito2 == fat_cpf[-1]:
@@ -72,12 +74,13 @@ def cad_senha():
     print('Cadastre sua senha com 6 digitos!')
     senha = getpass('Digite sua senha: ')
     conf_senha=getpass('Confirme sua senha: ')
-    while senha != conf_senha and len(senha) > 6:
+    while senha != conf_senha or len(senha) > 6:
         print("As senhas divergem")
         senha = getpass('Digite sua senha: ')
         conf_senha=getpass('Confirme sua senha: ')
         print("senha cadastrada com sucesso")
     return senha
+
 
 def cad_email():
     #Essa função serve para cadastrar o email do usuario
@@ -85,7 +88,7 @@ def cad_email():
     return email
 
 def lista():
-    pessoa = pessoa()
+    pessoa = input('Nome: ')
     cpf = cad_cpf()
     email = cad_email()
     senha = cad_senha()
