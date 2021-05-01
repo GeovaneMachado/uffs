@@ -13,11 +13,21 @@ def prod():
         for i in mercearia:
             print(i)
         contiuar="n"
+        produto=0
+        carrinho_de_compras=[]
         while True:
             qual=int(input("Qual produto vc deseja adicionar ao carrinho ?" ))
             print("certo, produto adicionado com sucesso!")
-            for g in range(len(mercearia)):
-                print(g)
+            if qual == 1:
+                produto=mercearia[1]
+                carrinho_de_compras.append(mercearia[0])
+                carrinho_de_compras.append(mercearia[1])
+            else:
+                if qual > 1:
+                    
+            break
+    print(carrinho_de_compras)
+
                 
 ifa=prod()
 print(ifa)
