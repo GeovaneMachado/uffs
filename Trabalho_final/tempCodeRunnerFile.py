@@ -1,1 +1,0 @@
-        cadastro = [pessoa, email, cpf, senha]
