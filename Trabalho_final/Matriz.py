@@ -106,7 +106,7 @@ class cadastro:
     senha = None
     saldo = None
 
-def lista():#Essa função serve para o usuario cadastrar seus dados
+def main():#Essa função serve para o usuario cadastrar seus dados
     titulo("Cadastro")
     tot_cad = []
     pessoas = cadastro()
@@ -124,11 +124,6 @@ def lista():#Essa função serve para o usuario cadastrar seus dados
         pessoa_cad.append(pessoas.email)
         pessoa_cad.append(pessoas.senha)
         pessoa_cad.append(pessoas.saldo)
-        for i in range(len(tot_cad)):
-            if tot_cad[i].index(pessoas.cpf) not in tot_cad[i]:
-                print('ok')
-            else:
-                print('Ja existe') 
         tot_cad += [pessoa_cad]
         print(tot_cad)
         sair = input('continuar?[s/n]').upper()
@@ -137,7 +132,7 @@ def lista():#Essa função serve para o usuario cadastrar seus dados
     return tot_cad
 
 #bem_vindo()
-cadastro = lista()
+cadastro = main()
 print(cadastro)
 
 
