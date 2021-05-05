@@ -12,4 +12,10 @@ def prod():
         print("OPÇÃO INVALIDA")
         print()
         segmento = int(input('Segmetno:\n[1] mercearia\n[2] Bebidas\n[3] Eletronicos\nOpcao: '))
+    while segmento == 1:
+        print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-Bem vindo a mercearia=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+        print(mercearia)
+        ler=int(input("Qual produto voce dezeja adicionar ao carrinho? "))
+        break
 
+prod()
