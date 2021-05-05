@@ -81,13 +81,16 @@ def cad_senha():
     #Essa função serve para cadastrar a senha do usuario
     from getpass import getpass #Esconde a senha digitada
     print('Cadastre sua senha com 6 digitos!')
-    senha = getpass('Digite sua senha: ')
-    conf_senha=getpass('Confirme sua senha: ')
-    while senha != conf_senha or len(senha) > 6:
-        print("As senhas divergem")
+    while True:
         senha = getpass('Digite sua senha: ')
         conf_senha=getpass('Confirme sua senha: ')
-        print("senha cadastrada com sucesso")
+        if senha != conf_senha:
+            print("As senhas divergem")
+        elif len(senha) != 6:
+            print('A senha precisa ter 6 digitos')
+        else:
+            print("senha cadastrada com sucesso")
+            break
     return senha
 
 
@@ -96,32 +99,44 @@ def cad_email():
     email=str(input("Digite seu indereço de email: "))
     return email
 
+class cadastro:
+    nome =None
+    cpf = None
+    email = None
+    senha = None
+    saldo = None
+
 def lista():#Essa função serve para o usuario cadastrar seus dados
     titulo("Cadastro")
-    pessoas_cad = []
-    cadastro = []
+    tot_cad = []
+    pessoas = cadastro()
+    count = 0
     sair = ' '
     while True:
-        pessoa = input('Nome: ')
-        cadastro.append(pessoa)
-        cadastro.append(cad_cpf())
-        cadastro.append(cad_email())
-        cadastro.append(cad_senha())
-        for i in pessoas_cad:
-            if pessoa in i:
-                print('Nome ja existe nos cadastros!')
-                print('NÃO FOI POSSIVEL COMPLETAR O CADASTRO TENTE NOVAMENTE!')
-                cadastro.clear()
-                break
+        pessoa_cad = []
+        pessoas.nome = input('Nome: ')
+        pessoas.cpf = cad_cpf()
+        pessoas.email = cad_email()
+        pessoas.senha = cad_senha()
+        pessoas.saldo = 1000
+        pessoa_cad.append(pessoas.nome)
+        pessoa_cad.append(pessoas.cpf)
+        pessoa_cad.append(pessoas.email)
+        pessoa_cad.append(pessoas.senha)
+        pessoa_cad.append(pessoas.saldo)
+        for i in range(len(tot_cad)):
+            if tot_cad[i].index(pessoas.cpf) not in tot_cad[i]:
+                print('ok')
             else:
-                pessoas_cad.append(cadastro)
-                cadastro.clear()
+                print('Ja existe') 
+        tot_cad += [pessoa_cad]
+        print(tot_cad)
         sair = input('continuar?[s/n]').upper()
         if sair in 'N':
             break
-    return pessoas_cad
+    return tot_cad
 
-bem_vindo()
+#bem_vindo()
 cadastro = lista()
 print(cadastro)
 
