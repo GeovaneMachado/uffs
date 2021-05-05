@@ -10,23 +10,9 @@ def prod():
         segmento = int(input('Segmetno:\n[1] mercearia\n[2] Bebidas\n[3] Eletronicos\nOpcao: '))
     if segmento == 1:
         return mercearia
+    elif segmento == 2:
+        return bebidas
     else:
-        if segmento == 2:
-            return bebidas
-        else:
-            if segmento == 3:
-                return eletronico
+        return eletronico
 
-   
-   
-   
-   
-    #carrinho_de_compras=[]
-    #while segmento == 1:
-    #    print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-Bem vindo a mercearia=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-    #    print(mercearia)
-    #    ler=int(input("Qual produto voce dezeja adicionar ao carrinho? "))
-    #    break
 
-jogo=prod()
-print(jogo)
