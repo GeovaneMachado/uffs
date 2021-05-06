@@ -73,8 +73,7 @@ def valida_cpf(cpf):
         else:
             return False
         
-def cad_cpf():
-    #essa função serve para cadastrar o cpf
+def cad_cpf(): #essa função serve para cadastrar o cpf
     cpf=str(input("Digite seu cpf: ")).replace('.','').replace('-','')  #Apaga os pontos e tracos se forem digitados
     ver_cpf=valida_cpf(cpf)
     while ver_cpf == False:
@@ -84,64 +83,59 @@ def cad_cpf():
     return cpf
 
 
-def cad_senha():
-    #Essa função serve para cadastrar a senha do usuario
-   from getpass import getpass #Esconde a senha digitada
+def cad_senha(): #Essa função serve para cadastrar a senha do usuario
+    from getpass import getpass #Esconde a senha digitada
     print('Cadastre sua senha com 6 digitos!')
     while True:
         senha = getpass('Digite sua senha: ')
         conf_senha= getpass('Confirme sua senha: ')
         if senha != conf_senha:
             print("As senhas divergem")
-        #elif len(senha) != 6:
-         #   print('A senha precisa ter 6 digitos')
+        elif len(senha) != 6:
+            print('A senha precisa ter 6 digitos')
         else:
             print("senha cadastrada com sucesso")
             break
     return senha
 
 
-def cad_email():
-    #Essa função serve para cadastrar o email do usuario
+def cad_email(): #Essa função serve para cadastrar o email do usuario
     email=str(input("Digite seu indereço de email: "))
     return email
 
-def main():#Essa função serve para o usuario cadastrar seus dados
-    titulo("Cadastro")
-    tot_cad = []
+def main(): #Essa função serve para o usuario cadastrar seus dados
     pessoas = cadastro()
-    sair = ' '
-    while True:
-        pessoa_cad = [] 
-        pessoas.nome = input('Nome: ')
-        pessoas.cpf = cad_cpf()
-        pessoas.email = cad_email()
-        pessoas.senha = cad_senha()
-        pessoas.saldo = 1000
-        pessoa_cad.append(pessoas.nome)
-        pessoa_cad.append(pessoas.cpf)
+    pessoa_cad = [] 
+    pessoas.nome = input('Nome: ')
+    pessoas.cpf = cad_cpf()
+    pessoas.email = str(input("Digite seu indereço de email: "))
+    pessoas.senha = cad_senha()
+    pessoas.saldo = 1000
+    pessoa_cad.append(pessoas.nome)
+    pessoa_cad.append(pessoas.cpf)
+    pessoa_cad.append(pessoas.email)
+    pessoa_cad.append(pessoas.senha)
+    pessoa_cad.append(pessoas.saldo) #adiciona os dados no vetor para cadastro
+    return pessoa_cad
+
+#bem_vindo()
+tot_cad = []
+while True:
+    start = menu()
+    if start == 1:
+        titulo('CADASTRO')
+        registro = main()
+        print(registro)
         count = 1
-        pessoa_cad.append(pessoas.email)
-        pessoa_cad.append(pessoas.senha)
-        pessoa_cad.append(pessoas.saldo) #adiciona os dados no vetor para cadastro
         for i in range(len(tot_cad)):#percorre a matriz tot_cad para ver se o cpf se repete mais que uma vez
-            if tot_cad[i][1] == pessoas.cpf: 
-                count += 1 #S
+            if tot_cad[i][1] == registro[1]: 
+                count += 1
         if count > 1:
             print('Pessoa ja cadastrada!')
             print ('Tente novamente!')
         else:
-            tot_cad += [pessoa_cad]
-        print(tot_cad)
-        while sair not in 'SN':
-            sair = input('continuar?[s/n]').upper()
-        if sair in 'N':
-            break
-    return tot_cad
-
-#bem_vindo()
-final = main()
-print(final)
+            tot_cad += [registro]
+    print(tot_cad)
 
 
 

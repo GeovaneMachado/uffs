@@ -36,6 +36,9 @@ def carrinho(produtos):
             break
     return cesto
 
+def ver_carrinho():
+    carrinho = carrinho()
+
 
 
 tsta=prod()
