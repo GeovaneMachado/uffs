@@ -118,6 +118,31 @@ def main(): #Essa função serve para o usuario cadastrar seus dados
     pessoa_cad.append(pessoas.saldo) #adiciona os dados no vetor para cadastro
     return pessoa_cad
 
+
+
+def log(x):
+    while True:
+        logui=[]
+        cpf=input("Digite o seu CPF: ")
+        senha=input("Digite sua senha: ")
+        for i in range(len(x)):
+            if x[i][1] == cpf and x[i][3] == senha:
+                      
+                
+
+    
+  
+  
+
+            
+
+
+
+
+
+
+
+
 #bem_vindo()
 tot_cad = []
 while True:
@@ -136,6 +161,10 @@ while True:
         else:
             tot_cad += [registro]
     print(tot_cad)
+    if start == 2:
+        print(tot_cad)
+        loguin=log(tot_cad)
+        print(loguin)
 
 
 
