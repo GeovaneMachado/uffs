@@ -121,12 +121,23 @@ def main(): #Essa função serve para o usuario cadastrar seus dados
 
 
 def log(x):
+    from getpass import getpass
     while True:
         logui=[]
         cpf=input("Digite o seu CPF: ")
-        senha=input("Digite sua senha: ")
-        for i in range(len(x)):
-            if x[i][1] == cpf and x[i][3] == senha:
+        if valida_cpf(cpf):
+            senha=getpass("Digite sua senha: ")
+            for i in range(len(x)):
+                if x[i][1] == cpf and x[i][3] == senha:
+                    logui.append(x[i][0])
+                    logui.append(x[i][2])
+                    logui.append(x[i][4])
+                    print()
+                    print("=-=-=-=-=-=-Login efetuado com sucesso=-=-=-=-=-=-=")
+                    print()
+                    return logui
+        else:
+            print("CPF invalido")
                       
                 
 
@@ -160,11 +171,9 @@ while True:
             print ('Tente novamente!')
         else:
             tot_cad += [registro]
-    print(tot_cad)
     if start == 2:
-        print(tot_cad)
         loguin=log(tot_cad)
-        print(loguin)
+        
 
 
 
