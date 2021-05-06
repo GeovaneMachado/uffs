@@ -126,13 +126,8 @@ def log(x):
         cpf=input("Digite o seu CPF: ")
         senha=input("Digite sua senha: ")
         for i in range(len(x)):
-            if x[i][1] == cpf and x[i][3] == senha:      
-                logui.append(x[i-1][1])
-                logui.append(x[i])
-                logui.append(x[i+1])
-                logui.append(x[i+2])
-                logui.append(x[i+3])
-                return logui
+            if x[i][1] == cpf and x[i][3] == senha:
+                      
                 
 
     
