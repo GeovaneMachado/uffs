@@ -1,4 +1,4 @@
-#cadastro de dados
+#final de dados
 
 def ver_nome(lista,nome_usuario):
     #Essa função verifica se o nome que o usuario esta cadastrando ja esta no sistema
@@ -11,7 +11,7 @@ def ver_nome(lista,nome_usuario):
 
 def pessoa(lista):
     #Essa função serve para o usuario cadastrar seu nome
-    print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=Iniciando cadastro-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+    print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=Iniciando final-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
     nome_usuario=str(input("digite seu nome completo: "))
     ver=ver_nome(lista,nome_usuario)
     while ver == True:
