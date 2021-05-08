@@ -186,9 +186,6 @@ while True:
         loguin=log(tot_cad)
     if start == 3: # Consultar cliente 
         consulta=cons(tot_cad)
-        print(consulta)
+        print("Cadastro encontrado")
+        print(f"nome: {consulta[0]}\nE-mail: {consulta[1]}")
     if start == 4: # função destinada a fazer compras 
-        
-
-
-
