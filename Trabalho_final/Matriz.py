@@ -139,7 +139,18 @@ def log(x):
         else:
             print("CPF invalido")
                       
-                
+def cons(x):
+    while True:
+        logui=[]
+        cpf=input("Digite o seu CPF: ")
+        if valida_cpf(cpf):
+            for i in range(len(x)):
+                if x[i][1] == cpf:
+                    logui.append(x[i][0])
+                    logui.append(x[i][2])
+                    return logui
+        else:
+            print("CPF não encontrado!")
 
     
   
@@ -158,7 +169,7 @@ def log(x):
 tot_cad = []
 while True:
     start = menu()
-    if start == 1:
+    if start == 1: #Cadastro de clientes novos
         titulo('CADASTRO')
         registro = main()
         print(registro)
@@ -171,10 +182,10 @@ while True:
             print ('Tente novamente!')
         else:
             tot_cad += [registro]
-    if start == 2:
+    if start == 2:  # Login 
         loguin=log(tot_cad)
-        
-
-
-
-
+    if start == 3: # Consultar cliente 
+        consulta=cons(tot_cad)
+        print("Cadastro encontrado")
+        print(f"nome: {consulta[0]}\nE-mail: {consulta[1]}")
+    if start == 4: # função destinada a fazer compras 
