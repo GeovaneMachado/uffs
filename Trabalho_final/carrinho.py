@@ -10,7 +10,7 @@ def prod():#produtos cadastrados
         print()
         print("OPÇÃO INVALIDA")
         print()
-        segmento = int(input('Segmento:\n[1] mercearia\n[2] Bebidas\n[3] Eletronicos\nOpcao: '))
+        segmento = int(input('Segmento:\n[1] mercearia\n[2] Bebidas\n[3] Eletronicos\n[4]Voltar\nOpcao: '))
     if segmento == 1: # retorna qual segmento a pessoa quer ver para fazer a compra
         return mercearia
     elif segmento == 2:
@@ -57,14 +57,14 @@ def ver_carrinho(compras):
         if vis_tot in 'sn':
             break
     if vis_tot == 's':
-        print(f'Valor total: {compras[-1]}')
+        print(f'Valor total: R${compras[-1]}')
 
 
 tot_cad = []
 compras = []
 count = soma = 0
 while True:
-    start = 4
+    start = int(input())
     '''if start == 1:
         titulo('CADASTRO')
         registro = main()
