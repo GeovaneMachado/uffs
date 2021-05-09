@@ -267,7 +267,15 @@ while True:
             elif play == 3:
                 titulo('seu carrinho') 
                 ver_carrinho(compras)
-                
-            
-        
-        
+            elif play == 4:
+                print("O total da compra foi: {} R$".format(soma))
+                saldo=loguin[2]
+                checkout=(saldo-soma)
+                if checkout < 0:
+                    print("Saldo insuficiente")
+                else:
+                    loguin.remove(saldo) 
+                    loguin.append(checkout)
+                    print("Pagamento efetuado com sucesso!")      
+                    print(f"Novo saldo: {checkout}")
+                          
