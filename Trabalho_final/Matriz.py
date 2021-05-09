@@ -264,7 +264,7 @@ while True:
                 itens = prod()
                 if itens == 'Voltar':
                     print('Voltando para o menu')
-                    break
+                    continue
                 produtos = carrinho(itens)
                 compras += produtos
                 soma += compras[-1]['VALOR_TOT']
