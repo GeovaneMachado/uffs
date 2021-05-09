@@ -260,8 +260,10 @@ while True:
             if play == 1: # Consultar cliente
                 titulo('consulta') 
                 consulta=cons(tot_cad)
+                print()
                 print("Cadastro encontrado")
                 print(f"nome: {consulta[0]}\nE-mail: {consulta[1]}")
+                print()
             elif play == 2: # função destinada a fazer compras
                 titulo('compras') 
                 itens = prod()
@@ -276,6 +278,20 @@ while True:
             elif play == 3:
                 titulo('seu carrinho') 
                 ver_carrinho(compras)
+            elif play == 4:
+                print("O total da compra foi: {} R$".format(soma))
+                saldo=loguin[2]
+                checkout=(saldo-soma)
+                if checkout < 0:
+                    print("Saldo insuficiente")
+                else:
+                    loguin.remove(saldo) 
+                    loguin.append(checkout)
+                    print("Pagamento efetuado com sucesso!")      
+                    print(f"Novo saldo: {checkout}")
+            elif play == 5:
+                break
+                          
     elif start == 3:
         final = 'FINALIZANDO O PROGRAMA...'
         for i in final:
