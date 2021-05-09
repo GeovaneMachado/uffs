@@ -5,7 +5,7 @@ def prod():#produtos cadastrados
     {'produto': 'carregador','valor':29.99}, {'produto': 'webcam','valor':99.99}]
     bebidas = [{'produto': 'cerveja 350ml', 'valor': 2.49},{'produto': 'agua de coco 1l','valor': 5.99},
     {'produto':'Refrigerante 2l','valor':7.99},{'produto':'Suco 1l','valor':4.99}]
-    segmento = int(input('Segmento:\n[1] mercearia\n[2] Bebidas\n[3] Eletronicos\nOpcao: '))
+    segmento = int(input('Segmento:\n[1] mercearia\n[2] Bebidas\n[3] Eletronicos\n[4]Voltar\nOpcao: '))
     while segmento > 4 or segmento < 1:
         print()
         print("OPÇÃO INVALIDA")
@@ -57,7 +57,10 @@ def ver_carrinho(compras):
         if vis_tot in 'sn':
             break
     if vis_tot == 's':
-        print(f'Valor total: R${compras[-1]}')
+        try:
+            print(f'Valor total: R${compras[-1]:.2f}')
+        except IndexError:
+            print('Valor total: R$0,00')
 
 
 tot_cad = []
@@ -77,6 +80,7 @@ while True:
             print ('Tente novamente!')
         else:
             tot_cad += [registro]'''
+    print(compras)
     if start == 4:
         #titulo('COMPRAR')
         itens = prod()

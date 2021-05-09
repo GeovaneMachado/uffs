@@ -8,43 +8,43 @@ class cadastro:
 
 def bem_vindo():
     from time import sleep
-    cabe = '*=' *15
+    cabe = '*=' *20
     comeco = 'Bem vindo a loja virtual'
     for i in cabe:
         print(i, end='')
         sleep(0.1)
     print()
-    print('|  ', end='')
+    print('|       ', end='')
     for i in comeco:
         print(i, end='')
         sleep(0.1)
-    print(f'{"|":>3}')
+    print(f'{"|":>8}')
     for i in cabe:
         print(i, end='')
         sleep(0.1)
     print()
 
 def titulo(palavra):
-    print(f'{"-"*30}')
-    print(f'{palavra.upper()}'.center(30))
-    print(f'{"-"*30}')
+    print(f'{"-"*40}')
+    print(f'{palavra.upper()}'.center(40))
+    print(f'{"-"*40}')
 
 def menu1():
-    Menu=int(input("[1]-Cadastro\n[2]-Login\n"))
+    Menu=int(input("[1]-Cadastro\n[2]-Login\nOpcao: "))
     while Menu > 2 or Menu < 1:
         print("Opção invalida")
-        Menu=int(input("[1]-Cadastro\n[2]-Login\n"))
+        Menu=int(input("[1]-Cadastro\n[2]-Login\nOpcao: "))
     return Menu
 
 def menu2():
-    Menu=int(input("[1]-consultar cliente\n[2]-Fazer compras\n[3]-Ver carrinho\n[4]-pagamento\n[5]-Voltar\n"))
+    titulo('menu principal')
+    Menu=int(input("[1]-consultar cliente\n[2]-Fazer compras\n[3]-Ver carrinho\n[4]-pagamento\n[5]-Voltar\nOpcao: "))
     while Menu > 5 or Menu < 1:
         print("Opção invalida")
-        Menu=int(input("[1]-consultar cliente\n[2]-Fazer compras\n[3]-Ver carrinho\n[4]-pagamento\n[5]-Voltar\n"))
+        Menu=int(input("[1]-consultar cliente\n[2]-Fazer compras\n[3]-Ver carrinho\n[4]-pagamento\n[5]-Voltar\nOpcao: "))
     return Menu
 
 def valida_cpf(cpf):
-    global digito1
     soma = j = 0
     verificar =  True
     count = 10
@@ -166,7 +166,7 @@ def prod():#produtos cadastrados
     {'produto': 'carregador','valor':29.99}, {'produto': 'webcam','valor':99.99}]
     bebidas = [{'produto': 'cerveja 350ml', 'valor': 2.49},{'produto': 'agua de coco 1l','valor': 5.99},
     {'produto':'Refrigerante 2l','valor':7.99},{'produto':'Suco 1l','valor':4.99}]
-    segmento = int(input('Segmento:\n[1] mercearia\n[2] Bebidas\n[3] Eletronicos\nOpcao: '))
+    segmento = int(input('Segmento:\n[1] Mercearia\n[2] Bebidas\n[3] Eletronicos\n[4] Voltar\nOpcao: '))
     while segmento > 4 or segmento < 1:
         print()
         print("OPÇÃO INVALIDA")
@@ -224,20 +224,12 @@ def ver_carrinho(compras):
   
   
 
-            
-
-
-
-
-
-
-
-
-#bem_vindo()
+bem_vindo()
 tot_cad = []
 compras = []
 count = soma = 0
 while True:
+    titulo('amazon cc')
     start = menu1()
     if start == 1: #Cadastro de clientes novos
         titulo('CADASTRO')
@@ -256,11 +248,13 @@ while True:
         loguin=log(tot_cad)
         while True:
             play=menu2()
-            if play == 1: # Consultar cliente 
+            if play == 1: # Consultar cliente
+                tituo('consulta') 
                 consulta=cons(tot_cad)
                 print("Cadastro encontrado")
                 print(f"nome: {consulta[0]}\nE-mail: {consulta[1]}")
-            if play == 2: # função destinada a fazer compras 
+            elif play == 2: # função destinada a fazer compras
+                titulo('compras') 
                 itens = prod()
                 if itens == 'Voltar':
                     print('Voltando para o menu')
@@ -270,8 +264,10 @@ while True:
                 soma += compras[-1]['VALOR_TOT']
                 compras.remove(compras[-1])
                 compras.append(soma)
-            if play == 3: 
+            elif play == 3:
+                titulo('seu carrinho') 
                 ver_carrinho(compras)
+                
             
         
         
