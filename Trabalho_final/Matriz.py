@@ -249,10 +249,12 @@ while True:
         while True:
             play=menu2()
             if play == 1: # Consultar cliente
-                tituo('consulta') 
+                tituo=('consulta') 
                 consulta=cons(tot_cad)
+                print()
                 print("Cadastro encontrado")
                 print(f"nome: {consulta[0]}\nE-mail: {consulta[1]}")
+                print()
             elif play == 2: # função destinada a fazer compras
                 titulo('compras') 
                 itens = prod()
