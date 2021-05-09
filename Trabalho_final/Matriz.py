@@ -278,4 +278,6 @@ while True:
                     loguin.append(checkout)
                     print("Pagamento efetuado com sucesso!")      
                     print(f"Novo saldo: {checkout}")
+            elif play == 5:
+                break
                           
