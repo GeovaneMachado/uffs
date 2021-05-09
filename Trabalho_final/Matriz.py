@@ -1,4 +1,5 @@
 #Definindo funções 
+from time import sleep
 class cadastro:
     nome =None
     cpf = None
@@ -7,7 +8,7 @@ class cadastro:
     saldo = None
 
 def bem_vindo():
-    from time import sleep
+
     cabe = '*=' *20
     comeco = 'Bem vindo a loja virtual'
     for i in cabe:
@@ -30,10 +31,10 @@ def titulo(palavra):
     print(f'{"-"*40}')
 
 def menu1():
-    Menu=int(input("[1]-Cadastro\n[2]-Login\nOpcao: "))
-    while Menu > 2 or Menu < 1:
+    Menu=int(input("[1]-Cadastro\n[2]-Login\n[3]-Sair\nOpcao: "))
+    while Menu > 3 or Menu < 1:
         print("Opção invalida")
-        Menu=int(input("[1]-Cadastro\n[2]-Login\nOpcao: "))
+        Menu=int(input("[1]-Cadastro\n[2]-Login\n[3]-Sair\nOpcao: "))
     return Menu
 
 def menu2():
@@ -129,6 +130,7 @@ def main(): #Essa função serve para o usuario cadastrar seus dados
 
 def log(x):
     from getpass import getpass
+    cont = 0
     while True:
         logui=[]
         cpf=input("Digite o seu CPF: ")
@@ -140,9 +142,14 @@ def log(x):
                     logui.append(x[i][2])
                     logui.append(x[i][4])
                     print()
-                    print("=-=-=-=-=-=-Login efetuado com sucesso=-=-=-=-=-=-=")
+                    print("=-=-=-=-Login efetuado com sucesso=-=-=-=-=")
                     print()
                     return logui
+                elif x[i][1] != cpf and x[i][3] != senha:
+                   cont += 1
+            if cont == len(x):
+                print('Pessoa sem cadastro!')
+                return False
         else:
             print("CPF invalido")
                       
@@ -244,12 +251,14 @@ while True:
             print ('Tente novamente!')
         else:
             tot_cad += [registro]
-    if start == 2:  # Login 
+    elif start == 2:  # Login 
         loguin=log(tot_cad)
+        if loguin == False:
+            continue
         while True:
             play=menu2()
             if play == 1: # Consultar cliente
-                tituo('consulta') 
+                titulo('consulta') 
                 consulta=cons(tot_cad)
                 print("Cadastro encontrado")
                 print(f"nome: {consulta[0]}\nE-mail: {consulta[1]}")
@@ -267,7 +276,15 @@ while True:
             elif play == 3:
                 titulo('seu carrinho') 
                 ver_carrinho(compras)
-                
+    elif start == 3:
+        final = 'FINALIZANDO O PROGRAMA...'
+        for i in final:
+            print(i,end='')
+            sleep(0.20)
+        print()
+        break
+titulo('obrigado por ultilizar esse programa!')
+
             
         
         
