@@ -39,10 +39,10 @@ def menu1():
 
 def menu2():
     titulo('menu principal')
-    Menu=int(input("[1]-consultar cliente\n[2]-Fazer compras\n[3]-Ver carrinho\n[4]-pagamento\n[5]-Voltar\nOpcao: "))
+    Menu=int(input("[1]-Consultar cliente\n[2]-Fazer compras\n[3]-Ver carrinho\n[4]-Pagamento\n[5]-Voltar\nOpcao: "))
     while Menu > 5 or Menu < 1:
         print("Opção invalida")
-        Menu=int(input("[1]-consultar cliente\n[2]-Fazer compras\n[3]-Ver carrinho\n[4]-pagamento\n[5]-Voltar\nOpcao: "))
+        Menu=int(input("[1]-Consultar cliente\n[2]-Fazer compras\n[3]-Ver carrinho\n[4]-Pagamento\n[5]-Voltar\nOpcao: "))
     return Menu
 
 def valida_cpf(cpf):
@@ -142,7 +142,7 @@ def log(x):
                     logui.append(x[i][2])
                     logui.append(x[i][4])
                     print()
-                    print("=-=-=-=-Login efetuado com sucesso=-=-=-=-=")
+                    print("=-=-=-=Login efetuado com sucesso-=-=-=-=")
                     print()
                     return logui
                 elif x[i][1] != cpf and x[i][3] != senha:
@@ -159,9 +159,10 @@ def cons(x):
         cpf=input("Digite o seu CPF: ")
         if valida_cpf(cpf):
             for i in range(len(x)):
-                if x[i][1] == cpf:
+                if x[i][1] == cpf: #adiciona o cliente a ser consultado em um vetor para exibir na tela
                     logui.append(x[i][0])
                     logui.append(x[i][2])
+                    logui.append(x[i][-1])
                     return logui
         else:
             print("CPF não encontrado!")
@@ -178,7 +179,7 @@ def prod():#produtos cadastrados
         print()
         print("OPÇÃO INVALIDA")
         print()
-        segmento = int(input('Segmento:\n[1] mercearia\n[2] Bebidas\n[3] Eletronicos\n[4]Voltar\nOpcao: '))
+        segmento = int(input('Segmento:\n[1] Mercearia\n[2] Bebidas\n[3] Eletronicos\n[4]Voltar\nOpcao: '))
     if segmento == 1: # retorna qual segmento a pessoa quer ver para fazer a compra
         return mercearia
     elif segmento == 2:
@@ -225,7 +226,10 @@ def ver_carrinho(compras):
         if vis_tot in 'sn':
             break
     if vis_tot == 's':
-        print(f'Valor total: R${compras[-1]}')
+        try:
+            print(f'Valor total: R${compras[-1]}')
+        except IndexError:
+            print('Valor total: R$0,00')
 
     
   
@@ -262,9 +266,9 @@ while True:
                 consulta=cons(tot_cad)
                 print()
                 print("Cadastro encontrado")
-                print(f"nome: {consulta[0]}\nE-mail: {consulta[1]}")
+                print(f"Nome: {consulta[0]}\nE-mail: {consulta[1]}\nSaldo:{consulta[2]}")
                 print()
-            elif play == 2: # função destinada a fazer compras
+            elif play == 2: # opção destinada a fazer compras
                 titulo('compras') 
                 itens = prod()
                 if itens == 'Voltar':
@@ -275,7 +279,7 @@ while True:
                 soma += compras[-1]['VALOR_TOT']
                 compras.remove(compras[-1])
                 compras.append(soma)
-            elif play == 3:
+            elif play == 3: 
                 titulo('seu carrinho') 
                 ver_carrinho(compras)
             elif play == 4:
@@ -287,11 +291,11 @@ while True:
                 else:
                     loguin.remove(saldo) 
                     loguin.append(checkout)
+                    compras.clear()
                     print("Pagamento efetuado com sucesso!")      
-                    print(f"Novo saldo: {checkout}")
+                    print(f"Novo saldo: R${checkout}" if checkout == 0 else "Novo saldo: R$0,00")
             elif play == 5:
-                break
-                          
+                break                       
     elif start == 3:
         final = 'FINALIZANDO O PROGRAMA...'
         for i in final:
