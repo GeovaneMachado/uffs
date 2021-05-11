@@ -116,7 +116,7 @@ def main(): #Essa função serve para o usuario cadastrar seus dados
     pessoa_cad = [] 
     pessoas.nome = input('Nome: ')
     pessoas.cpf = cad_cpf()
-    pessoas.email = str(input("Digite seu indereço de email: "))
+    pessoas.email = str(input("Digite seu email: "))
     pessoas.senha = cad_senha()
     pessoas.saldo = 1000
     pessoa_cad.append(pessoas.nome)
@@ -216,9 +216,11 @@ def carrinho(produtos):
     
 
 def ver_carrinho(compras):
+    esp = ' '
     for i, v in enumerate(compras): #mostra os produtos adicionados no carrinho
         try:
-            print(f'Item: {i} {v["produto"]}  R${v["valor"]:.2f}    Quantidade:{v["quantidade"]}')
+            p = 20 - len(v["produto"])
+            print(f'Item: {i} {v["produto"]}{esp * p}R${v["valor"]:.2f}{esp*5}Quantidade:{v["quantidade"]}')
         except:
             pass
     while True:
@@ -227,16 +229,26 @@ def ver_carrinho(compras):
             break
     if vis_tot == 's':
         try:
-            print(f'Valor total: R${compras[-1]}')
+            print(f'Valor total: R${compras[-1]:.2f}')
         except IndexError:
             print('Valor total: R$0,00')
 
-    
-  
-  
+def remov_car(compras):
+    for i, v in enumerate(compras):
+        try:
+            print(f'Item: {i} {v["produto"]}  R${v["valor"]:.2f}    Quantidade:{v["quantidade"]}')
+        except:
+            pass
+    rem = int(input('Codigo do item para remover: '))
+    quant = int(input('Quantidade para remover: '))
+    compras[-1] -= compras[rem]['valor'] * quant
+    compras[rem]['quantidade'] -= quant
+    compras.remove(compras[rem])
+    return compras
 
-bem_vindo()
-tot_cad = []
+
+#bem_vindo()
+tot_cad = [['geovane', '11362213950', 'fa','886460',1000]]
 compras = []
 count = soma = 0
 while True:
@@ -245,7 +257,6 @@ while True:
     if start == 1: #Cadastro de clientes novos
         titulo('CADASTRO')
         registro = main()
-        print(registro)
         count = 1
         for i in range(len(tot_cad)):#percorre a matriz tot_cad para ver se o cpf se repete mais que uma vez
             if tot_cad[i][1] == registro[1]: 
@@ -282,19 +293,22 @@ while True:
             elif play == 3: 
                 titulo('seu carrinho') 
                 ver_carrinho(compras)
-            elif play == 4:
-                print("O total da compra foi: {} R$".format(soma))
+            elif play == 4: #realiza o pagamento
+                print("O total da compra foi: {:.2f} R$".format(soma))
                 saldo=loguin[2]
-                checkout=(saldo-soma)
+                checkout= saldo-soma
+                loguin[2] = checkout
+                soma = 0 
                 if checkout < 0:
                     print("Saldo insuficiente")
                 else:
-                    loguin.remove(saldo) 
-                    loguin.append(checkout)
-                    compras.clear()
+                    compras.clear() #limpa o carrinho
                     print("Pagamento efetuado com sucesso!")      
-                    print(f"Novo saldo: R${checkout}" if checkout == 0 else "Novo saldo: R$0,00")
+                    print(f"Novo saldo: R${checkout:.2f}")
             elif play == 5:
+                compras = remov_car(compras)
+                ver_carrinho(compras)
+            elif play == 6:
                 break                       
     elif start == 3:
         final = 'FINALIZANDO O PROGRAMA...'
