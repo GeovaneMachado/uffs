@@ -39,10 +39,10 @@ def menu1():
 
 def menu2():
     titulo('menu principal')
-    Menu=int(input("[1]-Consultar cliente\n[2]-Fazer compras\n[3]-Ver carrinho\n[4]-Pagamento\n[5]-Voltar\nOpcao: "))
+    Menu=int(input("[1]-Consultar cliente\n[2]-Fazer compras\n[3]-Ver carrinho\n[4]-Pagamento\n[5]-Remover item\n[6]-Voltar\nOpcao: "))
     while Menu > 5 or Menu < 1:
         print("Opção invalida")
-        Menu=int(input("[1]-Consultar cliente\n[2]-Fazer compras\n[3]-Ver carrinho\n[4]-Pagamento\n[5]-Voltar\nOpcao: "))
+        Menu=int(input("[1]-Consultar cliente\n[2]-Fazer compras\n[3]-Ver carrinho\n[4]-Pagamento\n[5]-Remover item\n[6]-Voltar\nOpcao: "))
     return Menu
 
 def valida_cpf(cpf):
@@ -179,7 +179,7 @@ def prod():#produtos cadastrados
         print()
         print("OPÇÃO INVALIDA")
         print()
-        segmento = int(input('Segmento:\n[1] Mercearia\n[2] Bebidas\n[3] Eletronicos\n[4]Voltar\nOpcao: '))
+        segmento = int(input('Segmento:\n[1] Mercearia\n[2] Bebidas\n[3] Eletronicos\n[4] Voltar\nOpcao: '))
     if segmento == 1: # retorna qual segmento a pessoa quer ver para fazer a compra
         return mercearia
     elif segmento == 2:
@@ -217,10 +217,11 @@ def carrinho(produtos):
 
 def ver_carrinho(compras):
     esp = ' '
+    print(f'{"item":^4}  {"produto"}{" "*13}{"valor"}      {"quantidade"}')
     for i, v in enumerate(compras): #mostra os produtos adicionados no carrinho
         try:
             p = 20 - len(v["produto"])
-            print(f'Item: {i} {v["produto"]}{esp * p}R${v["valor"]:.2f}{esp*5}Quantidade:{v["quantidade"]}')
+            print(f'{i:^4}    {v["produto"]}{esp * p}R${v["valor"]:.2f}{esp*10}{v["quantidade"]}')
         except:
             pass
     while True:
@@ -234,22 +235,28 @@ def ver_carrinho(compras):
             print('Valor total: R$0,00')
 
 def remov_car(compras):
-    for i, v in enumerate(compras):
+    esp = ' '
+    print(f'{"item":^4}  {"produto"}{" "*13}{"valor"}{"quantidade":>20}')
+    for i, v in enumerate(compras): #mostra os produtos adicionados no carrinho
         try:
-            print(f'Item: {i} {v["produto"]}  R${v["valor"]:.2f}    Quantidade:{v["quantidade"]}')
+            p = 20 - len(v["produto"])
+            print(f'{i:^4}    {v["produto"]}{esp * p}R${v["valor"]:.2f}{esp*10}{v["quantidade"]}')
         except:
             pass
-    rem = int(input('Codigo do item para remover: '))
+    rem = int(input('Codigo do item para remover: ')) 
     quant = int(input('Quantidade para remover: '))
-    compras[-1] -= compras[rem]['valor'] * quant
-    compras[rem]['quantidade'] -= quant
-    compras.remove(compras[rem])
+    compras[-1] = compras[-1]- compras[rem]['valor'] * quant#produto x quantidade para remover
+    print(f'removido: {rem} quantidade:{quant}')
+    if compras[rem]['quantidade'] == quant:
+        compras.remove(compras[rem])
+    else:
+        compras[rem]['quantidade'] -= quant
     return compras
 
 
-#bem_vindo()
-tot_cad = [['geovane', '11362213950', 'fa','886460',1000]]
+bem_vindo()
 compras = []
+tot_cad = []
 count = soma = 0
 while True:
     titulo('amazon cc')
@@ -277,7 +284,7 @@ while True:
                 consulta=cons(tot_cad)
                 print()
                 print("Cadastro encontrado")
-                print(f"Nome: {consulta[0]}\nE-mail: {consulta[1]}\nSaldo:{consulta[2]}")
+                print(f"Nome: {consulta[0]}\nE-mail: {consulta[1]}\nSaldo: R${consulta[2]:.2f}")
                 print()
             elif play == 2: # opção destinada a fazer compras
                 titulo('compras') 
