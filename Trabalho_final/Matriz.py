@@ -313,8 +313,8 @@ while True:
                 os.system('cls') or None
                 titulo('pagamento')
                 print("O total da compra foi: {:.2f} R$".format(soma))
-                saldo=loguin[2]
-                checkout= saldo-soma
+                saldo=loguin[2] 
+                checkout= saldo-soma  #Recebe o valor que a pessoa tem menos o valor da compra 
                 if checkout < 0:
                     print("Saldo insuficiente")
                 else:
@@ -327,6 +327,7 @@ while True:
                 os.system('cls') or None
                 compras = remov_car(compras)
                 ver_carrinho(compras)
+                soma = compras[-1] #Recebe o valor da compra atualizado, diminuindo o valor que foi retirado
             elif play == 6:
                 os.system('cls') or None
                 break                       
