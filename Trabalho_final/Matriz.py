@@ -1,5 +1,6 @@
 #Definindo funções 
 from time import sleep
+import os
 class cadastro:
     nome =None
     cpf = None
@@ -8,27 +9,26 @@ class cadastro:
     saldo = None
 
 def bem_vindo():
-
-    cabe = '*=' *20
+    cabe = '*=' *30
     comeco = 'Bem vindo a loja virtual'
     for i in cabe:
         print(i, end='')
         sleep(0.1)
     print()
-    print('|       ', end='')
+    print('|                 ', end='')
     for i in comeco:
         print(i, end='')
         sleep(0.1)
-    print(f'{"|":>8}')
+    print(f'{"|":>18}')
     for i in cabe:
         print(i, end='')
         sleep(0.1)
     print()
 
 def titulo(palavra):
-    print(f'{"-"*40}')
-    print(f'{palavra.upper()}'.center(40))
-    print(f'{"-"*40}')
+    print(f'{"-"*60}')
+    print(f'{palavra.upper()}'.center(60))
+    print(f'{"-"*60}')
 
 def menu1():
     Menu=int(input("[1]-Cadastro\n[2]-Login\n[3]-Sair\nOpcao: "))
@@ -40,7 +40,7 @@ def menu1():
 def menu2():
     titulo('menu principal')
     Menu=int(input("[1]-Consultar cliente\n[2]-Fazer compras\n[3]-Ver carrinho\n[4]-Pagamento\n[5]-Remover item\n[6]-Voltar\nOpcao: "))
-    while Menu > 5 or Menu < 1:
+    while Menu > 6 or Menu < 1:
         print("Opção invalida")
         Menu=int(input("[1]-Consultar cliente\n[2]-Fazer compras\n[3]-Ver carrinho\n[4]-Pagamento\n[5]-Remover item\n[6]-Voltar\nOpcao: "))
     return Menu
@@ -201,10 +201,12 @@ def carrinho(produtos):
     while True:
         try:
             adic_car=int(input("Digite o codigo do produto:  "))
-            cesto.append(produtos[adic_car])
-            cesto[-1]['quantidade'] = int(input('Quantidade do produto: '))
-            valor_final += cesto[-1]['valor'] * cesto[-1]['quantidade'] #soma o valor que vai da do produto e acrescenta no valor total
-            cont=input("Quer adicionar mais produtos? [s/n]").lower()
+            quantidade = int(input('Quantidade do produto: '))
+            if quantidade >= 1:
+                cesto.append(produtos[adic_car])
+                cesto[-1]['quantidade'] = quantidade
+                valor_final += cesto[-1]['valor'] * quantidade #soma o valor que vai da do produto e acrescenta no valor total
+                cont=input("Quer adicionar mais produtos? [s/n]").lower()         
             while cont not in 'sn':
                 cont = input('Quer visualizar o valor total?[s/n]: ').lower()
         except:
@@ -213,11 +215,10 @@ def carrinho(produtos):
             break
     cesto.append({'VALOR_TOT':valor_final})
     return cesto
-    
 
 def ver_carrinho(compras):
     esp = ' '
-    print(f'{"item":^4}  {"produto"}{" "*13}{"valor"}      {"quantidade"}')
+    print(f'{"item":^4}  {"produto"}{" "*13}{"valor"}{"quantidade":>20}')
     for i, v in enumerate(compras): #mostra os produtos adicionados no carrinho
         try:
             p = 20 - len(v["produto"])
@@ -236,7 +237,7 @@ def ver_carrinho(compras):
 
 def remov_car(compras):
     esp = ' '
-    print(f'{"item":^4}  {"produto"}{" "*13}{"valor"}{"quantidade":>20}')
+    print(f'{"item":^4}    {"produto"}{" "*13}{"valor"}{"quantidade":>20}')
     for i, v in enumerate(compras): #mostra os produtos adicionados no carrinho
         try:
             p = 20 - len(v["produto"])
@@ -261,6 +262,7 @@ count = soma = 0
 while True:
     titulo('amazon cc')
     start = menu1()
+    os.system('cls') or None
     if start == 1: #Cadastro de clientes novos
         titulo('CADASTRO')
         registro = main()
@@ -274,12 +276,15 @@ while True:
         else:
             tot_cad += [registro]
     elif start == 2:  # Login 
+        titulo('login')
         loguin=log(tot_cad)
         if loguin == False:
             continue
+        os.system('cls') or None
         while True:
             play=menu2()
             if play == 1: # Consultar cliente
+                os.system('cls') or None
                 titulo('consulta') 
                 consulta=cons(tot_cad)
                 print()
@@ -287,45 +292,50 @@ while True:
                 print(f"Nome: {consulta[0]}\nE-mail: {consulta[1]}\nSaldo: R${consulta[2]:.2f}")
                 print()
             elif play == 2: # opção destinada a fazer compras
+                os.system('cls') or None
                 titulo('compras') 
                 itens = prod()
                 if itens == 'Voltar':
                     print('Voltando para o menu')
+                    os.system('cls') or None
                     continue
                 produtos = carrinho(itens)
                 compras += produtos
                 soma += compras[-1]['VALOR_TOT']
                 compras.remove(compras[-1])
                 compras.append(soma)
-            elif play == 3: 
+            elif play == 3:
+                os.system('cls') or None 
                 titulo('seu carrinho') 
-                ver_carrinho(compras)
+                ver_carrinho(compras)                
             elif play == 4: #realiza o pagamento
+                os.system('cls') or None
+                titulo('pagamento')
                 print("O total da compra foi: {:.2f} R$".format(soma))
                 saldo=loguin[2]
                 checkout= saldo-soma
-                loguin[2] = checkout
-                soma = 0 
+                loguin[2] = checkout 
                 if checkout < 0:
                     print("Saldo insuficiente")
                 else:
                     compras.clear() #limpa o carrinho
+                    soma = 0 
                     print("Pagamento efetuado com sucesso!")      
                     print(f"Novo saldo: R${checkout:.2f}")
             elif play == 5:
+                os.system('cls') or None
                 compras = remov_car(compras)
                 ver_carrinho(compras)
             elif play == 6:
+                os.system('cls') or None
                 break                       
     elif start == 3:
-        final = 'FINALIZANDO O PROGRAMA...'
-        for i in final:
+        end = 'FINALIZANDO O PROGRAMA...'
+        for i in end:
             print(i,end='')
             sleep(0.20)
         print()
         break
 titulo('obrigado por ultilizar esse programa!')
-
-            
-        
-        
+sleep(15)
+os.system('cls') or None
