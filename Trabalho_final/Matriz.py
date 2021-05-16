@@ -1,6 +1,6 @@
 #Definindo funções 
 from time import sleep
-import os
+import os #Biblioteca para 
 class cadastro:
     nome =None
     cpf = None
