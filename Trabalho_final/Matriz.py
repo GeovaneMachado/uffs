@@ -259,6 +259,7 @@ bem_vindo()
 compras = []
 tot_cad = []
 count = soma = 0
+checkout=1000
 while True:
     titulo('amazon cc')
     start = menu1()
@@ -289,7 +290,7 @@ while True:
                 consulta=cons(tot_cad)
                 print()
                 print("Cadastro encontrado")
-                print(f"Nome: {consulta[0]}\nE-mail: {consulta[1]}\nSaldo: R${consulta[2]:.2f}")
+                print(f"Nome: {consulta[0]}\nE-mail: {consulta[1]}\nSaldo: R${loguin[2]:.2f}")
                 print()
             elif play == 2: # opção destinada a fazer compras
                 os.system('cls') or None
@@ -314,11 +315,11 @@ while True:
                 print("O total da compra foi: {:.2f} R$".format(soma))
                 saldo=loguin[2]
                 checkout= saldo-soma
-                loguin[2] = checkout 
                 if checkout < 0:
                     print("Saldo insuficiente")
                 else:
                     compras.clear() #limpa o carrinho
+                    loguin[2] = checkout 
                     soma = 0 
                     print("Pagamento efetuado com sucesso!")      
                     print(f"Novo saldo: R${checkout:.2f}")
