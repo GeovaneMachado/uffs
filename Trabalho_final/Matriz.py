@@ -1,6 +1,6 @@
 #Definindo funções 
 from time import sleep
-import os #Biblioteca para 
+import os  
 class cadastro:
     nome =None
     cpf = None
@@ -288,6 +288,7 @@ while True:
         if loguin == False:
             continue
         os.system('cls') or None
+        print(loguin)
         while True:
             play=menu2()
             if play == 1: # Consultar cliente
