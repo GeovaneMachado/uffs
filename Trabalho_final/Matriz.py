@@ -287,7 +287,6 @@ while True:
         if loguin == False:
             continue
         os.system('cls') or None
-        print(loguin)
         while True:
             play=menu2()
             if play == 1: # Consultar cliente
