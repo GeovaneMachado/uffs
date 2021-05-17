@@ -171,7 +171,7 @@ def prod():#produtos cadastrados
     mercearia = [{'produto':'feijão 1kg','valor':7.99}, {'produto':'arroz 5kg','valor':19.99},{'produto':'sal 1kg','valor':3.99},
     {'produto': 'açucar 5kg','valor':10.99},{'produto':'farinha 5kg','valor':14.99},{'produto':'fermento 200g','valor':4.99}]
     eletronico = [{'produto':'Fone de ouvido','valor':79.99}, {'produto':'Cabo HDMI','valor':19.99}, {'produto': 'mouse','valor':99.99},{'produto':'teclado','valor':139.99},
-    {'produto': 'carregador','valor':29.99}, {'produto': 'webcam','valor':99.99}, {'produto':'Monitor','valor': 600.00}]
+    {'produto': 'carregador','valor':29.99}, {'produto': 'webcam','valor':99.99}, {'produto':'Monitor','valor': 599.99}]
     bebidas = [{'produto': 'cerveja 350ml', 'valor': 2.49},{'produto': 'agua de coco 1l','valor': 5.99},
     {'produto':'Refrigerante 2l','valor':7.99},{'produto':'Suco 1l','valor':4.99}]
     segmento = int(input('Segmento:\n[1] Mercearia\n[2] Bebidas\n[3] Eletronicos\n[4] Voltar\nOpcao: '))
