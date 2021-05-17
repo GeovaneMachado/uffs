@@ -191,6 +191,8 @@ def prod():#produtos cadastrados
 
 
 def carrinho(produtos):
+    if len(produtos) > 0:
+        produtos.remove(produtos[-1])
     cesto=[]
     adic_car=None
     cont="s"
@@ -244,14 +246,18 @@ def remov_car(compras):
             print(f'{i:^4}    {v["produto"]}{esp * p}R${v["valor"]:.2f}{esp*10}{v["quantidade"]}')
         except:
             pass
-    rem = int(input('Codigo do item para remover: ')) 
-    quant = int(input('Quantidade para remover: '))
-    compras[-1] = compras[-1]- compras[rem]['valor'] * quant#produto x quantidade para remover
-    print(f'removido: {rem} quantidade:{quant}')
-    if compras[rem]['quantidade'] == quant:
-        compras.remove(compras[rem])
-    else:
-        compras[rem]['quantidade'] -= quant
+    print(compras)
+    try:
+        rem = int(input('Codigo do item para remover: ')) 
+        quant = int(input('Quantidade para remover: '))
+        compras[-1] = compras[-1]- compras[rem]['valor'] * quant#produto x quantidade para remover
+        print(f'removido: {rem} quantidade:{quant}')
+        if compras[rem]['quantidade'] == quant:
+            compras.remove(compras[rem])
+        else:
+            compras[rem]['quantidade'] -= quant
+    except:
+        print('Não foi possivel remover esse item!')
     return compras
 
 
@@ -325,9 +331,12 @@ while True:
                     print(f"Novo saldo: R${checkout:.2f}")
             elif play == 5:
                 os.system('cls') or None
-                compras = remov_car(compras)
-                ver_carrinho(compras)
-                soma = compras[-1] #Recebe o valor da compra atualizado, diminuindo o valor que foi retirado
+                try:
+                    compras = remov_car(compras)
+                    ver_carrinho(compras)
+                    soma = compras[-1] #Recebe o valor da compra atualizado, diminuindo o valor que foi retirado
+                except:
+                    pass
             elif play == 6:
                 os.system('cls') or None
                 break                       
