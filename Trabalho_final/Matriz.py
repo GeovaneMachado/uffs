@@ -246,7 +246,6 @@ def remov_car(compras):
             print(f'{i:^4}    {v["produto"]}{esp * p}R${v["valor"]:.2f}{esp*10}{v["quantidade"]}')
         except:
             pass
-    print(compras)
     try:
         rem = int(input('Codigo do item para remover: ')) 
         quant = int(input('Quantidade para remover: '))
